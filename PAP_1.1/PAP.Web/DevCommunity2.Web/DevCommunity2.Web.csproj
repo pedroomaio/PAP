@@ -1,0 +1,56 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <UserSecretsId>aspnet-DevCommunity2.Web-FFFF74A2-AD38-4D8C-9083-CCC8C1E38607</UserSecretsId>
+    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20190422160429_mg1.cs" />
+    <Compile Remove="Migrations\20190422160429_mg1.Designer.cs" />
+    <Compile Remove="Migrations\20190422160529_mg2.cs" />
+    <Compile Remove="Migrations\20190422160529_mg2.Designer.cs" />
+    <Compile Remove="Migrations\20190422160848_mg1.cs" />
+    <Compile Remove="Migrations\20190422160848_mg1.Designer.cs" />
+    <Compile Remove="Migrations\20190422161351_mg1.cs" />
+    <Compile Remove="Migrations\20190422161351_mg1.Designer.cs" />
+    <Compile Remove="Migrations\20190422161858_mg1.cs" />
+    <Compile Remove="Migrations\20190422161858_mg1.Designer.cs" />
+    <Compile Remove="Migrations\20190423101435_mig1.cs" />
+    <Compile Remove="Migrations\20190423101435_mig1.Designer.cs" />
+    <Compile Remove="Migrations\20190510172620_mg3.cs" />
+    <Compile Remove="Migrations\20190510172620_mg3.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\Images\EventPhotos\DefaulEventPhoto.png" />
+    <Content Remove="wwwroot\Images\UserPhotos\DefaultUserPhoto.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\Images\EventPhotos\DefaulEventPhoto.png" />
+    <None Include="wwwroot\Images\UserPhotos\DefaultUserPhoto.png" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="AspNet.Security.OAuth.GitHub" Version="2.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\PAP.Business\PAP.Business.csproj" />
+    <ProjectReference Include="..\..\PAP.DataBase\PAP.DataBase.csproj" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Folder Include="wwwroot\Images\AccountPublish\" />
+    <Folder Include="wwwroot\Images\PublishEvent\" />
+  </ItemGroup>
+
+</Project>

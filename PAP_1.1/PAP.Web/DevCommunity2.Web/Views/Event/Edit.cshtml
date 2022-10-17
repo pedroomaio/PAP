@@ -1,0 +1,47 @@
+﻿@model PAP.Business.ViewModels.EventViewModel
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/LayoutAuth.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    <div class="card">
+        @Html.AntiForgeryToken()
+
+        @Html.HiddenFor(model => model.EventId)
+        <!-- Name -->
+        <div class="md-form mt-3">
+            <input asp-for="EventName" type="text" id="materialContactFormName" placeholder="Name" class="form-control">
+            @Html.ValidationMessageFor(model => model.EventName, "", new { @class = "text-danger" })
+        </div>
+
+
+        <!--Description-->
+        <div class="md-form">
+            <textarea id="materialContactFormMessage" asp-for="Description" class="form-control md-textarea" rows="3"></textarea>
+            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            <label for="materialContactFormMessage">Description</label>
+        </div>
+
+        <!-- EventDate -->
+        <div class="md-form">
+            <input type="date" asp-for="EventDate" id="materialContactFormEmail" placeholder="Date" class="form-control">
+            @Html.ValidationMessageFor(model => model.EventDate, "", new { @class = "text-danger" })
+
+        </div>
+
+
+        <div class="md-form">
+            <input type="text" asp-for="Location" id="materialContactFormEmail" placeholder="Location" class="form-control">
+            @Html.ValidationMessageFor(model => model.Location, "", new { @class = "text-danger" })
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <button class="btn btn-outline-info btn-rounded btn-block z-depth-0 my-4 waves-effect" type="submit">Edit</button>
+            </div>
+        </div>
+    </div>
+}

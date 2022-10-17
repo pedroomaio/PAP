@@ -1,0 +1,11 @@
+﻿#ex4 .p1[data-count]:after {
+    position: absolute;
+    content:"40";
+    font-size: 40%;
+    border-radius: 50%;
+    line-height: 1em;
+    color: white;
+    background: rgba(255,0,0,.85);
+    text-align: center;
+    min-width: 1em;
+}

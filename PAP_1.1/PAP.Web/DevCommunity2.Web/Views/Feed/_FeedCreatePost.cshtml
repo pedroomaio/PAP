@@ -1,0 +1,29 @@
+﻿@model FeedPostViewModel
+
+<form id="FeedCreate" asp-action="Create" asp-controller="Feed" enctype="multipart/form-data">
+    <ul class="list-group" style="border:none">
+        <li class="list-group-item">
+            <div class="media mt-3 shadow-textarea">
+                <img class="user-photo d-flex rounded-circle avatar z-depth-1-half mr-3" src="/Images/UserPhotos/DefaultUserPhoto.png"
+                     alt="User Phto">
+                <div class="media-body">
+                    <h5 class="nick-name mt-0 font-weight-bold blue-text">User Name</h5>
+                    <div class="form-group basic-textarea rounded-corners">
+                        <textarea asp-for="TextOnPublish" class="form-control z-depth-1" rows="3"></textarea>
+                        <span asp-validation-for="TextOnPublish" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </li>
+        <li class="btn btn-primary btn-sm float-left">
+            <input type="file" name="File" class="btn btn-primary btn-sm float-left">
+            <input type="submit" value="Create" class="btn btn-success float-right" />
+        </li>
+    </ul>
+</form>
+<style>
+     .avatar {
+        width: 64px;
+    }
+</style>
+

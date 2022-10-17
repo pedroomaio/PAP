@@ -1,0 +1,58 @@
+﻿@model PAP.Business.ViewModels.EventViewModel
+
+@{
+    Layout = "~/Views/Shared/LayoutAuth.cshtml";
+}
+
+<body>  
+        <br />
+        <div class="card">
+            <h5 class="card-header info-color white-text text-center py-4">
+                <strong>New Event</strong>
+            </h5>
+
+            <!--Card content-->
+            <div class="card-body px-lg-5 pt-0">
+
+                <!-- Form -->
+                <form asp-controller="Event" asp-action="Create" class="text-center" style="color: #757575;">
+
+                    @Html.AntiForgeryToken()
+
+                    <!-- Name -->
+                    <div class="md-form mt-3">                      
+                        <input asp-for="EventName" type="text" id="materialContactFormName" placeholder="Name" class="form-control">
+                    </div>
+
+
+                    <!--Description-->
+                    <div class="md-form">
+                        <textarea id="materialContactFormMessage" asp-for="Description" class="form-control md-textarea" rows="3"></textarea>
+                        <label for="materialContactFormMessage">Description</label>
+                    </div>
+
+                    <!-- EventDate -->
+                    <div class="md-form">
+                        <input type="date" asp-for="EventDate" id="materialContactFormEmail" placeholder="Date" class="form-control">
+                    </div>
+
+
+                    <div class="md-form">
+                        <input type="text" asp-for="Location" id="materialContactFormEmail" placeholder="Location" class="form-control">
+                    </div>
+
+                    <!-- Send button -->
+                    <button class="btn btn-outline-info btn-rounded btn-block z-depth-0 my-4 waves-effect" type="submit">Create</button>
+
+                </form>
+                <!-- Form -->
+
+            </div>
+
+        </div>     
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+</body>
+
+

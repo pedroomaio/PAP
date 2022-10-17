@@ -1,0 +1,67 @@
+﻿@model EventFeedIndexViewModel
+<br />
+<li class="list-group-item" style="padding-top:2px; padding-left:5px;">
+    <div class="row">
+        <div class="col-md-1">
+            <img src="~/Images/UserPhotos/@Model.UserPublishPhoto" class="rounded-circle avatar z-depth-1-half mr-3">
+        </div>
+        <div class="col-md-11">
+            <p>
+                <a class="float-left"><strong> @Model.UserNick</strong></a>
+            </p>
+            <div class="clearfix"></div>
+            <p>@Model.TextOnPublish</p>
+            <img src="~/Images/PublishEvent/@Model.PhotoPath" class="img-fluid rounded mx-auto d-block" />
+        </div>
+    </div>
+</li>
+
+<form id="formFeedBack" asp-action="CreateFeedBack" asp-controller="EventFeed">
+    <div class="list-group-item">
+        <div class="media mt-3 shadow-textarea">
+            <img class="user-photo d-flex rounded-circle avatar z-depth-1-half mr-3" src="~/Images/UserPhotos/DefaultUserPhoto.png"
+                 alt="User Phto">
+            <div class="media-body">
+                <h5 class="nick-name mt-0 font-weight-bold blue-text">User Name</h5>
+                <div class="form-group basic-textarea rounded-corners">
+                    <input type="hidden" asp-for="AccountPublishId" name="AccountPublishId" />
+                    <textarea id="feedbacktext" asp-for="FeedBackText" class="form-control z-depth-1" rows="3" style="font-weight: 300;" placeholder="Write your comment..."></textarea>
+                    <input type="submit" value="Create" class="btn btn-success float-right" />
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+@foreach (var item in Model.EventFeedIndexFeedBacks)
+{
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-1">
+                    <img id="feedbackindexuserphoto" src="~/Images/UserPhotos/@item.UserPhotoFeedBack " class="d-flex rounded-circle avatar z-depth-1-half mr-3" />
+                </div>
+                <div class="col-md-11">
+                    <p class="float-left" id="feedbackindexusername">
+                        <strong>@item.UserNick</strong>
+                    </p>
+                    <div class="clearfix"></div>
+                    <p id="feedbackindextext">@item.EventFeedBackText</p>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+<style>
+    .media .avatar {
+        width: 64px;
+    }
+
+    .shadow-textarea textarea.form-control {
+        padding-left: 0.8rem;
+    }
+</style>
+
+

@@ -1,0 +1,90 @@
+﻿@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<div class="card">
+
+    <h5 class="card-header info-color white-text text-center py-4">
+        <strong>Sign up</strong>
+    </h5>
+
+    <!--Card content-->
+    <div class="card-body px-lg-5 pt-0">
+
+        <!-- Form -->
+        <form asp-route-returnUrl="@Model.ReturnUrl" enctype="multipart/form-data" method="post" class="text-center" style="color: #757575;">
+            
+            <div class="form-row">
+                <div class="col">
+                    <!-- First name -->
+                    <div class="md-form">
+                        <input type="text" id="materialRegisterFormFirstName" asp-for="Input.NickName" placeholder="NickName" class="form-control">
+                        <span asp-validation-for="Input.NickName" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- E-mail -->
+            <div class="md-form mt-0">
+                <input type="email" id="materialRegisterFormEmail" asp-for="Input.Email" placeholder="E-mail" class="form-control">
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+            </div>
+
+            <!-- Password -->
+            <div class="md-form">
+                <input type="password" id="materialRegisterFormPassword" asp-for="Input.Password" class="form-control" aria-describedby="materialRegisterFormPasswordHelpBlock" placeholder="Password">
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
+            </div>
+
+            <div class="md-form">
+                <input type="password" id="materialRegisterFormPassword" asp-for="Input.ConfirmPassword" class="form-control" aria-describedby="materialRegisterFormPasswordHelpBlock" placeholder="Confirm Password">
+                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+            </div>
+
+            <div class="file-field">
+                <div class="mb-4">
+                    <img src="~/Images/UserPhotos/DefaultUserPhoto.png"
+                         class="rounded-circle z-depth-1-half avatar-pic" width="50" alt="example placeholder avatar">
+                </div>
+                <div class="d-flex justify-content-center">
+                    <div class="btn btn-mdb-color btn-rounded float-left">
+                        <span>Add photo</span>
+                        <input type="file" asp-for="Input.Photo">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sign up button -->
+            <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">Register</button>
+            <hr>
+        </form>
+        <!-- Social register -->
+        <p>or sign up with:</p>
+
+        @{
+            if ((Model.ExternalLogins?.Count ?? 0) != 0)
+            {
+                <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+                    <div>
+                        <p>
+
+                            @foreach (var provider in Model.ExternalLogins)
+                            {
+                                <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+                            }
+                        </p>
+                    </div>
+                </form>
+            }
+
+
+        }
+    </div>
+
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

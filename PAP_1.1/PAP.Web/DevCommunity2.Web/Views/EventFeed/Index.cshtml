@@ -1,0 +1,22 @@
+﻿@model List<EventFeedIndexViewModel>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/LayoutAuth.cshtml";
+}
+
+@{
+    EventPostViewModel fepvm = new EventPostViewModel();
+}
+<br />
+<partial name="_FeedEventCreatePost" model="fepvm" />
+<br />
+<br />
+@if (Model != null)
+{
+    @foreach (var item in Model)
+    {
+        <partial name="_FeedEventIndexViewModel" model="item" />     
+    }
+}
+
+

@@ -1,0 +1,84 @@
+﻿@page
+@model LoginModel
+
+@{
+    ViewData["Title"] = "Log in";
+}
+<div class="row">
+    <div class="col">
+        <div class="card">
+            <!-- Default form login -->
+            <h5 class="card-header info-color white-text text-center py-4">
+                <strong>Sign in</strong>
+            </h5>
+            <form id="account" class="text-center border border-light p-5" method="post">
+                <div class="card-body px-lg-5 pt-0">
+                    <!-- Email -->
+                    <input type="email" asp-for="Input.Email" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="E-mail">
+                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+
+                    <!-- Password -->
+                    <input type="password" asp-for="Input.Password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password">
+                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+
+
+                    <div class="d-flex justify-content-around">
+                        <div>
+                            <!-- Remember me -->
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" asp-for="Input.RememberMe" class="custom-control-input" id="defaultLoginFormRemember">
+                                <label class="custom-control-label" for="defaultLoginFormRemember">Remember me</label>
+                            </div>
+                        </div>
+                        <div>
+                            <!-- Forgot password -->
+                            <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
+                        </div>
+                    </div>
+
+                    <!-- Sign in button -->
+                    <button class="btn btn-info btn-block my-4" type="submit">Sign in</button>
+                    <!-- Register -->
+                    <p>
+                        Not a member?
+                        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register</a>
+                    </p>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="col-md-6 col-md-offset-2">
+        <section>
+            <h4>Use another service to log in.</h4>
+            <hr />
+            @{
+                if ((Model.ExternalLogins?.Count ?? 0) == 0)
+                {
+                    <div>
+                        <p>
+                            There are no external authentication services configured. See <a href="https://go.microsoft.com/fwlink/?LinkID=532715">this article</a>
+                            for details on setting up this ASP.NET application to support logging in via external services.
+                        </p>
+                    </div>
+                }
+                else
+                {
+                    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+                        <div>
+                            <p>
+                                @foreach (var provider in Model.ExternalLogins)
+                                {
+                                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+                                }
+                            </p>
+                        </div>
+                    </form>
+                }
+            }
+        </section>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

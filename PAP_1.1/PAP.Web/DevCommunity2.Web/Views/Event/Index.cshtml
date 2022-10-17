@@ -1,0 +1,37 @@
+﻿@model IEnumerable<PAP.Business.ViewModels.EventViewModel>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/LayoutAuth.cshtml";
+}
+
+<br />
+<form>
+    <button asp-action="Create" asp-controller="Event" class="btn btn-primary"> Create new </button>
+</form>
+
+@foreach (var item in Model)
+{
+    <br />
+    <div class="card">
+        <div class="card text-center">
+            <div class="card-header">
+                <p class="card-title">
+                    @Html.ActionLink(@item.EventName, "Index", "EventFeed", new { EventId = item.EventId })                 
+                </p>
+            </div>
+            <div class="card-body">
+                <p class="card-text">@item.Description</p>
+                <p class="card-text">@item.Location</p>
+                @if (item.IsUserCreated)
+                {
+                    @Html.ActionLink("Edit", "Edit", new { @class = "btn btn-primary", id = item.EventId })
+                }
+
+            </div>
+            <div class="card-footer text-muted">
+                <span style="color:red">Event Date : @item.EventDate.ToShortDateString()</span>
+            </div>
+        </div>
+    </div>
+
+}
